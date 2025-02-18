@@ -63,8 +63,6 @@ class LinearRegressor:
 
         self.intercept = w[0]
         self.coefficients = w[1:]
-        if self.coefficients is None or self.intercept is None:
-            print('hola')
 
     def predict(self, X):
         """
@@ -80,7 +78,6 @@ class LinearRegressor:
             ValueError: If the model is not yet fitted.
         """
         if self.coefficients is None or self.intercept is None:
-            print('hola')
             raise ValueError("Model is not yet fitted")
 
         if np.ndim(X) == 1:
@@ -90,6 +87,7 @@ class LinearRegressor:
         else:
             # Predict when X is more than one variable
             predictions = self.intercept + X @ self.coefficients
+        
         return predictions
 
 
@@ -115,7 +113,7 @@ def evaluate_regression(y_true, y_pred):
     rmse =  np.sqrt(np.mean((y_true - y_pred) ** 2))
 
     # Mean Absolute Error
-    # TODO: Calculate MAE
+    # Calculate MAE
     mae = np.mean(np.abs(y_true - y_pred))
 
     return {"R2": r_squared, "RMSE": rmse, "MAE": mae}
